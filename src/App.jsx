@@ -1,19 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react";
 
 async function fetchPokemon() {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon/")
-  const data = await response.json()
-  return data.results
+  const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
+  const data = await response.json();
+  return data.results;
 }
 
 function App() {
-  const [pokemon, setPokemon] = useState([])
+  const [pokemon, setPokemon] = useState([]);
 
-  fetchPokemon().then(result => {
-    console.log("Requisição realizada")
-    console.log(result)
-    setPokemon(result)
-  })
+  useEffect(() => {
+  fetchPokemon().then((result) => {
+    console.log("Requisição realizada");
+    console.log(result);
+    setPokemon(result);
+  });
+}, []);
 
   return (
     <div className="app">
@@ -22,7 +24,7 @@ function App() {
         {JSON.stringify(pokemon)}
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
