@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './index.css'
 
 async function fetchPokemon() {
   const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
@@ -10,18 +11,25 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
 
   useEffect(() => {
-  fetchPokemon().then((result) => {
-    console.log("Requisição realizada");
-    console.log(result);
-    setPokemon(result);
-  });
-}, []);
+    fetchPokemon().then((result) => {
+      console.log("Requisição realizada");
+      console.log(result);
+      setPokemon(result);
+    });
+  }, []);
 
   return (
     <div className="app">
       <div>
         <h2>Pokémon</h2>
-        {JSON.stringify(pokemon)}
+        <ul className="pokemon">
+          {pokemon.map((mon) => (
+            <li key={mon.name}>
+              <span>{mon.name}</span>
+              <button>Ver detalhes</button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
