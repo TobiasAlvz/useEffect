@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './index.css'
 
 function Counter() {
   let [counter, setCounter] = useState(0);
